@@ -31,7 +31,7 @@
 #include <std_srvs/Empty.h>             // for reset and clear services
 #include <geometry_msgs/Twist.h>        // For geometry_msgs::Twist 
 #include <iomanip>                      // for std::setprecision and std::fixed
-
+#include <turtlesim/Spawn.h>
 using namespace std;
 
 #define ROS_PACKAGE_NAME    "assignment2"
