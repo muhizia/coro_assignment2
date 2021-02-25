@@ -33,7 +33,7 @@
 *
 *******************************************************************************************************************/
 
-#include <assignment2/dvernon.h> 
+#include <assignment2/amuhizi.h> 
 
 /* global variables with the current turtle pose */
 
@@ -73,7 +73,7 @@ main(int argc, char **argv) {
 
    /* Initialize the ROS system and become a node */
    
-   ros::init(argc, argv, "dvernon"); // Initialize the ROS system
+   ros::init(argc, argv, "amuhizi"); // Initialize the ROS system
    ros::NodeHandle nh;               // Become a node
 
    
