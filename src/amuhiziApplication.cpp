@@ -180,10 +180,19 @@ main(int argc, char **argv) {
       }
       
       /* move the turtle to the start pose by teleporting */
-      geometry_msgs::Twist twist;
-      twist.angular.z = - M_PI/4;
-      twist.linear.x = 0;
-      pub.publish(twist);    
+      
+      ros::service::waitForService("spawn");
+      ros::ServiceClient add_turtle = node.serviceClient<turtlesim::Spawn>("spawn");
+      turtlesim::Spawn srv;
+      srv.Request.x = 5; //added
+      srv.Request.y = 5; //added
+      add_turtle.call(srv);
+
+
+      // geometry_msgs::Twist twist;
+      // twist.angular.z = - M_PI/4;
+      // twist.linear.x = 0;
+      // pub.publish(twist);    
       
       /* version 1 */
       /*
