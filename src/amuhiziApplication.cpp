@@ -188,12 +188,6 @@ main(int argc, char **argv) {
       req.y = 3;
       req.theta = M_PI/2;
       bool success = teleportClient.call(req,resp);
-      if(success){
-         ROS_INFO_STREAM("Spawned a turtle named "
-                        << resp.theta);
-      }else{
-         ROS_ERROR_STREAM("Failed to spawn.");
-      }
 
 
 
