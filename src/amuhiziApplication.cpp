@@ -171,7 +171,7 @@ main(int argc, char **argv) {
 
       /* turn the pen off so that we don't see a trace when the turtle teleports */
 
-      pen_arguments.request.off = 1;
+      pen_arguments.request.off = 0;
       
       success = setpenClient.call(pen_arguments);
       
@@ -181,20 +181,13 @@ main(int argc, char **argv) {
       
       /* move the turtle to the start pose by teleporting */
       
-      ros::ServiceClient spawnClient
-       = nh.serviceClient<turtlesim::Spawn>("spawn");
-
-      //Create the request and response objects.
-      turtlesim::Spawn::Request req;
-      turtlesim::Spawn::Response resp;
+      turtlesim::TeleportAbsolute::Request req;
+      turtlesim::TeleportAbsolute::Response resp;
 
       req.x = 2;
       req.y = 3;
       req.theta = M_PI/2;
-      req.name = "Turtle";
-
-      ros::service::waitForService("spawn", ros::Duration(5));
-      bool success = spawnClient.call(req,resp);
+      bool success = teleportClient.call(req,resp);
       if(success){
          ROS_INFO_STREAM("Spawned a turtle named "
                         << resp.name);
