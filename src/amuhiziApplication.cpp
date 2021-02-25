@@ -184,9 +184,9 @@ main(int argc, char **argv) {
       turtlesim::TeleportAbsolute::Request req;
       turtlesim::TeleportAbsolute::Response resp;
 
-      req.x = 2;
-      req.y = 3;
-      req.theta = M_PI/2;
+      req.x = 10;
+      req.y = 10;
+      req.theta = -M_PI/2;
       bool success = teleportClient.call(req,resp);
 
 
