@@ -190,7 +190,7 @@ main(int argc, char **argv) {
       bool success = teleportClient.call(req,resp);
       if(success){
          ROS_INFO_STREAM("Spawned a turtle named "
-                        << resp.name);
+                        << resp.theta);
       }else{
          ROS_ERROR_STREAM("Failed to spawn.");
       }
