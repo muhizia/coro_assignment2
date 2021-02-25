@@ -180,7 +180,11 @@ main(int argc, char **argv) {
       }
       
       /* move the turtle to the start pose by teleporting */
-
+      geometry_msgs::Twist twist;
+      twist.angular.z = 3.5;
+      twist.linear.x = 5;
+      pub.publish(twist);    
+      
       /* version 1 */
       /*
       req.x = start_x;  // fill in the request data members
