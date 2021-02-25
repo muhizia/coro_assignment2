@@ -181,21 +181,22 @@ main(int argc, char **argv) {
       
       /* move the turtle to the start pose by teleporting */
       
-      turtlesim::TeleportAbsolute::Request req;
-      turtlesim::TeleportAbsolute::Response resp;
+      // turtlesim::TeleportAbsolute::Request req;
+      // turtlesim::TeleportAbsolute::Response resp;
 
-      req.x = 0;
-      req.y = 0;
-      req.theta = M_PI/4;
-      bool success = teleportClient.call(req,resp);
-
-
+      // req.x = 0;
+      // req.y = 0;
+      // req.theta = M_PI/4;
+      // bool success = teleportClient.call(req,resp);
 
 
-      // geometry_msgs::Twist twist;
-      // twist.angular.z = - M_PI/4;
-      // twist.linear.x = 0;
-      // pub.publish(twist);    
+
+
+      geometry_msgs::Twist twist;
+      twist.angular.z = - M_PI/4;
+      twist.linear.x = 10;
+      twist.linear.y = 10;
+      pub.publish(twist);    
       
       /* version 1 */
       /*
