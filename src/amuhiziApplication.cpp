@@ -181,8 +181,8 @@ main(int argc, char **argv) {
       
       /* move the turtle to the start pose by teleporting */
       geometry_msgs::Twist twist;
-      twist.angular.z = 3.5;
-      twist.linear.x = M_PI;
+      twist.angular.z = - M_PI/4;
+      twist.linear.x = 0;
       pub.publish(twist);    
       
       /* version 1 */
