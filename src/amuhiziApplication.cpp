@@ -182,7 +182,7 @@ main(int argc, char **argv) {
       /* move the turtle to the start pose by teleporting */
       
       ros::service::waitForService("spawn");
-      ros::ServiceClient add_turtle = node.serviceClient<turtlesim::Spawn>("spawn");
+      ros::ServiceClient add_turtle = nh.serviceClient<turtlesim::Spawn>("spawn");
       turtlesim::Spawn srv;
       srv.Request.x = 5; //added
       srv.Request.y = 5; //added
