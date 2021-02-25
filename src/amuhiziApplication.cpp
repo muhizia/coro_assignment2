@@ -33,7 +33,7 @@
 *
 *******************************************************************************************************************/
 
-#include <assignment2/amuhizi.h> 
+#include <assignment2/dvernon.h> 
 
 /* global variables with the current turtle pose */
 
@@ -73,7 +73,7 @@ main(int argc, char **argv) {
 
    /* Initialize the ROS system and become a node */
    
-   ros::init(argc, argv, "amuhizi"); // Initialize the ROS system
+   ros::init(argc, argv, "dvernon"); // Initialize the ROS system
    ros::NodeHandle nh;               // Become a node
 
    
@@ -171,7 +171,7 @@ main(int argc, char **argv) {
 
       /* turn the pen off so that we don't see a trace when the turtle teleports */
 
-      pen_arguments.request.off = 0;
+      pen_arguments.request.off = 1;
       
       success = setpenClient.call(pen_arguments);
       
@@ -180,24 +180,7 @@ main(int argc, char **argv) {
       }
       
       /* move the turtle to the start pose by teleporting */
-      
-      // turtlesim::TeleportAbsolute::Request req;
-      // turtlesim::TeleportAbsolute::Response resp;
 
-      // req.x = 0;
-      // req.y = 0;
-      // req.theta = M_PI/4;
-      // bool success = teleportClient.call(req,resp);
-
-
-
-
-      geometry_msgs::Twist twist;
-      twist.angular.z = -M_PI;
-      twist.linear.x = 10;
-      twist.linear.y = 10;
-      pub.publish(twist);    
-      
       /* version 1 */
       /*
       req.x = start_x;  // fill in the request data members
