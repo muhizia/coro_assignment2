@@ -181,12 +181,28 @@ main(int argc, char **argv) {
       
       /* move the turtle to the start pose by teleporting */
       
-      ros::service::waitForService("spawn");
-      ros::ServiceClient add_turtle = nh.serviceClient<turtlesim::Spawn>("spawn");
-      turtlesim::Spawn srv;
-      srv.Request.x = 5; //added
-      srv.Request.y = 5; //added
-      add_turtle.call(srv);
+      ros::ServiceClient spawnClient
+       = nh.serviceClient<turtlesim::Spawn>("spawn");
+
+      //Create the request and response objects.
+      turtlesim::Spawn::Request req;
+      turtlesim::Spawn::Response resp;
+
+      req.x = 2;
+      req.y = 3;
+      req.theta = M_PI/2;
+      req.name = "Turtle";
+
+      ros::service::waitForService("spawn", ros::Duration(5));
+      bool success = spawnClient.call(req,resp);
+      if(success){
+         ROS_INFO_STREAM("Spawned a turtle named "
+                        << resp.name);
+      }else{
+         ROS_ERROR_STREAM("Failed to spawn.");
+      }
+
+
 
 
       // geometry_msgs::Twist twist;
