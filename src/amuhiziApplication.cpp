@@ -193,7 +193,7 @@ main(int argc, char **argv) {
 
 
       geometry_msgs::Twist twist;
-      twist.angular.z = - M_PI/4;
+      twist.angular.z = -M_PI;
       twist.linear.x = 10;
       twist.linear.y = 10;
       pub.publish(twist);    
