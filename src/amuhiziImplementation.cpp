@@ -66,3 +66,6 @@ void print_message_to_file(FILE *fp, char message[]) {
    fprintf(fp,"The message is: %s\n", message);
 }
 
+void rotateTutle(){
+   
+}
