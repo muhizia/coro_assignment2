@@ -194,7 +194,7 @@ main(int argc, char **argv) {
          _msg.angular.y = 0;
          _msg.angular.z = (double)(rand() % 10 - 5)/2.0;
          
-         ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", vel_msg.linear.x, vel_msg.angular.x);
+         ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", _msg.linear.x, _msg.angular.x);
 
          pub.publish(_msg);
          ros::spinOnce();
