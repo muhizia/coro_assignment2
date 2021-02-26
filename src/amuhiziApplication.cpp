@@ -190,9 +190,9 @@ main(int argc, char **argv) {
       _msg.angular.y = 0;
       _msg.angular.z = start_theta;
 
-      pub.publish(_msg);
-      pen_arguments.request.off = 1;
-      devideAndConquer(pub, (double)goal_x, (double)goal_y, (double)goal_theta);
+      // pub.publish(_msg);
+      // pen_arguments.request.off = 1;
+      devideAndConquer(pub, goal_x, goal_y, goal_theta);
       /* version 1 */
       /*
       req.x = start_x;  // fill in the request data members

@@ -75,7 +75,6 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
     int count = 0;
     double dx, dy;
     double erro_pos, erro_h;
-    double theta;
     geometry_msgs::Twist _msg;
     srand(time(NULL));
     while (ros::ok()){
