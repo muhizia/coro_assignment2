@@ -70,15 +70,6 @@ void rotateTutle(){
    
 }
 
-/* A callback function. Executed each time a new pose message arrives */
-
-void poseMessageReceived(const turtlesim::Pose& msg) {
-   current_theta = msg.theta;
-   current_x     = msg.x;
-   current_y     = msg.y;
-   ROS_INFO_STREAM(std::setprecision(2) << std::fixed << "position=(" << msg.x << "," << msg.y << ")" <<" direction=" << msg.theta);
-}
-
 void devideAndConquer(ros::Publisher  *pub, double x_g, double y_g, double theta_g){
     ros::Rate _rate(1);
     int count = 0;
