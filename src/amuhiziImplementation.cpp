@@ -81,7 +81,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
         dx = x_g ;//– current_x;
         dy = y_g ;//– current_y;
         erro_pos = sqrt(dx*dx + dy*dy);
-        erro_h = atan2 (dy, dx) – theta_g;
+        erro_h = atan2 (dy, dx) ;//– theta_g;
 
 
         if (abs(erro_h) > erro_pos){
