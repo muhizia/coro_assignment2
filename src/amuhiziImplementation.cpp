@@ -79,8 +79,8 @@ void devideAndConquer(ros::Publisher  *pub, double x_g, double y_g, double theta
     geometry_msgs::Twist _msg;
     srand(time(NULL));
     while (ros::ok()){
-        dx = x_g – current_x;
-        dy = y_g – current_y;
+        dx = x_g – (double)current_x;
+        dy = y_g – (double)current_y;
         erro_pos = sqrt(dx*dx + dy*dy);
         erro_h = atan2 (dy, dx) – theta_g;
 
