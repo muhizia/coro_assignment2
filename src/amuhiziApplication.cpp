@@ -183,7 +183,7 @@ main(int argc, char **argv) {
 
       ros::Rate _rate(1);
       int count = 0;
-      srand(tem(NULL));
+      srand(time(NULL));
       while (ros::ok()){
          geometry_msgs::Twist _msg;
          _msg.linear.x = (double)(rand() % 10 + 1)/4.0;
