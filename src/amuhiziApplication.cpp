@@ -182,9 +182,13 @@ main(int argc, char **argv) {
       /* move the turtle to the start pose by teleporting */
 
       geometry_msgs::Twist _msg;
-      _msg.x = start_x;
-      _msg.y = start_y;
-      _msg.theta = start_theta;
+      _msg.linear.x = start_x;
+      _msg.linear.y = start_y;
+      _msg.linear.z = 0;
+
+      _msg.angular.x = 0;
+      _msg.angular.y = 0;
+      _msg.angular.z = start_theta;
 
       pub.publish(_msg);
       pen_arguments.request.off = 1;
