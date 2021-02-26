@@ -70,7 +70,7 @@ void rotateTutle(){
    
 }
 
-void devideAndConquer(ros::Publisher  *pub, double x_g, double y_g, double theta_g){
+void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g){
     ros::Rate _rate(1);
     int count = 0;
     double dx, dy;
@@ -106,7 +106,7 @@ void devideAndConquer(ros::Publisher  *pub, double x_g, double y_g, double theta
         }
         ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", _msg.linear.x, _msg.angular.x);
 
-        *pub.publish(_msg);
+        pub.publish(_msg);
         ros::spinOnce();
         _rate.sleep();
         count++;
