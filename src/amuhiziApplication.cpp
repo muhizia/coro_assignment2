@@ -181,30 +181,14 @@ main(int argc, char **argv) {
       
       /* move the turtle to the start pose by teleporting */
 
-      ros::Rate _rate(1);
-      int count = 0;
-      srand(time(NULL));
-      while (ros::ok()){
-         geometry_msgs::Twist _msg;
-         _msg.linear.x = (double)(rand() % 10 + 1)/4.0;
-         _msg.linear.y = 0;
-         _msg.linear.z = 0;
+      geometry_msgs::Twist _msg;
+      _msg.x = start_x;
+      _msg.y = start_y;
+      _msg.theta = start_theta;
 
-         _msg.angular.x = 0;
-         _msg.angular.y = 0;
-         _msg.angular.z = (double)(rand() % 10 - 5)/2.0;
-         
-         ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", _msg.linear.x, _msg.angular.x);
-
-         pub.publish(_msg);
-         ros::spinOnce();
-         _rate.sleep();
-         count++;
-      }
-
-
-
-
+      pub.publish(_msg);
+      pen_arguments.request.off = 1;
+      devideAndConquer(&pub, goal_x, goal_y, goal_theta);
       /* version 1 */
       /*
       req.x = start_x;  // fill in the request data members

@@ -47,3 +47,5 @@ void display_error_and_exit(char error_message[]);
 void prompt_and_exit(int status);
 void prompt_and_continue();
 void print_message_to_file(FILE *fp, char message[]);
+void poseMessageReceived(const turtlesim::Pose& msg);
+void devideAndConquer(double xg, double yg);
