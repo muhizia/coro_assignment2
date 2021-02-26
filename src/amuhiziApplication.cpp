@@ -34,7 +34,7 @@
 *******************************************************************************************************************/
 
 #include <assignment2/amuhizi.h> 
-
+#include <sstream>
 /* global variables with the current turtle pose */
 
 float                current_x     = 0; 
