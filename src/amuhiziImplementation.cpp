@@ -69,14 +69,15 @@ void print_message_to_file(FILE *fp, char message[]) {
 void rotateTutle(){
    
 }
-float         current_x; 
-float         current_y; 
-float         current_theta;
+
 void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g){
     ros::Rate _rate(1);
     int count = 0;
     double dx, dy;
     double erro_pos, erro_h;
+    float         current_x; 
+float         current_y; 
+float         current_theta;
     geometry_msgs::Twist _msg;
     srand(time(NULL));
     while (ros::ok()){
