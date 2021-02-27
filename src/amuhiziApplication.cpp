@@ -191,7 +191,7 @@ main(int argc, char **argv) {
       _msg.angular.z = start_theta;
 
       // pub.publish(_msg);
-      // pen_arguments.request.off = 1;
+      pen_arguments.request.off = 0;
       devideAndConquer(pub, goal_x, goal_y, goal_theta);
       /* version 1 */
       /*
