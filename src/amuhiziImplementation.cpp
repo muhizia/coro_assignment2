@@ -66,12 +66,6 @@ void print_message_to_file(FILE *fp, char message[]) {
    fprintf(fp,"The message is: %s\n", message);
 }
 
-void rotateTutle(){
-   
-}
-float                current_x     = 0; 
-float                current_y     = 0; 
-float                current_theta = 0;
 void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g){
     ros::Rate _rate(1);
     int count = 0;
@@ -79,6 +73,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
     double erro_pos, erro_h;
     geometry_msgs::Twist _msg;
     srand(time(NULL));
+    
     while (ros::ok()){
         dx = x_g–current_x;
         dy = y_g-current_y;
