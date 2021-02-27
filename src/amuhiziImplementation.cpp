@@ -103,7 +103,8 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
             _msg.angular.y = 0;
             _msg.angular.z = 0;
         }
-        ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", _msg.linear.x, _msg.angular.x);
+      //   ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", _msg.linear.x, _msg.angular.x);
+        ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", current_x, current_y);
 
         pub.publish(_msg);
         ros::spinOnce();
