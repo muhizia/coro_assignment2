@@ -109,7 +109,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
 
          _msg.angular.x = 0;
          _msg.angular.y = 0;
-         _msg.angular.z = 2*double(rand())/double(RAND_MAX)-1;//Kph*erro_h;
+         _msg.angular.z = Kph*erro_h;
          ROS_INFO("angular z = %.2f\n", Kph*erro_h);
          ROS_INFO("================Turning===================");
       }else{
