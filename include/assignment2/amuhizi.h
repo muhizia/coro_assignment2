@@ -48,4 +48,4 @@ void prompt_and_exit(int status);
 void prompt_and_continue();
 void print_message_to_file(FILE *fp, char message[]);
 void rotateTutle();
-void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g);
+void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_start, double theta_g);
