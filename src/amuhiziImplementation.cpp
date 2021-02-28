@@ -73,10 +73,10 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
     double erro_pos, erro_h;
     geometry_msgs::Twist _msg;
     srand(time(NULL));
-    
+    ROS_INFO("Moving linear.x = %.2f, angular.z %.2f\n", (x_g-current_x), x_g);
     while (ros::ok()){
-        dx = x_g–double(current_x);
-        dy = y_g-double(current_y);
+        dx = x_g;//–double(current_x);
+        dy = y_g;//-double(current_y);
         erro_pos = sqrt(dx*dx + dy*dy);
         erro_h = atan2 (dy, dx)-theta_g;
 
@@ -101,7 +101,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
             _msg.angular.z = 0;
         }
          //   ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", _msg.linear.x, _msg.angular.x);
-        ROS_INFO("Moving linear.x = %.2f, angular.z %.2f\n", (x_g-current_x), x_g);
+        
 
         pub.publish(_msg);
         ros::spinOnce();
