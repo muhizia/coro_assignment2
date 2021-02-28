@@ -69,7 +69,7 @@ void print_message_to_file(FILE *fp, char message[]) {
 void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    ros::Rate _rate(1);
    int count = 0;
-   double dx, dy, currentX, currentY;
+   double dx, dy, currentX, currentY, currentTheta;
    double erro_pos, erro_h;
    geometry_msgs::Twist _msg;
    srand(time(NULL));
@@ -84,16 +84,18 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
    ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
 
    while (is_start || erro_pos > 1e-2){
-      is_start = false;
-      currentX = double(current_x);
-      currentY = double(current_y);
+      is_start       = false;
+      currentX       = current_x;
+      currentY       = current_y;
+      currentTheta   = current_theta;
+      dx             = x_g-currentX;
+      dy             = y_g-currentY;
+      erro_pos       = sqrt(dx*dx + dy*dy);
+      erro_h         = atan2(dy, dx)- abs(theta_g-currentTheta);
+
       ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
       ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
-      dx = x_g-currentX;
-      dy = y_g-currentY;
-      erro_pos = sqrt(dx*dx + dy*dy);
-      erro_h = atan2 (dy, dx)-theta_g;
-
+      ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
 
       if (abs(erro_h)>1e-2){
          // set forward velocity: v = 0
