@@ -73,15 +73,16 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
    double erro_pos, erro_h;
    geometry_msgs::Twist _msg;
    srand(time(NULL));
-
-   erro_pos    = sqrt(dx*dx + dy*dy);
-   erro_h      = atan2 (dy, dx)-theta_g;
-   currentX    = current_x;
-   currentY    = current_y;
+   bool is_start = true;
+   // erro_pos    = sqrt(dx*dx + dy*dy);
+   // erro_h      = atan2 (dy, dx)-theta_g;
+   // currentX    = current_x;
+   // currentY    = current_y;
    ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
    ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
 
-   while (erro_pos > 1e-2){
+   while (is_start || erro_pos > 1e-2){
+      is_start = false;
       currentX = double(current_x);
       currentY = double(current_y);
       ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
