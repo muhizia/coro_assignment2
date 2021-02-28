@@ -69,14 +69,16 @@ void print_message_to_file(FILE *fp, char message[]) {
 void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g){
     ros::Rate _rate(1);
     int count = 0;
-    double dx, dy;
+    double dx, dy, currentX, currentY;
     double erro_pos, erro_h;
     geometry_msgs::Twist _msg;
     srand(time(NULL));
-    ROS_INFO("Moving linear.x = %.2f, angular.z %.2f\n", (current_x), x_g);
     while (ros::ok()){
-        dx = x_g;//–double(current_x);
-        dy = y_g;//-double(current_y);
+       currentX = double(current_x);
+       currentY = double(current_y);
+       ROS_INFO("Moving linear.x = %.2f, angular.z %.2f\n", currentX, currentY);
+        dx = x_g-currentX;
+        dy = y_gcurrentY;
         erro_pos = sqrt(dx*dx + dy*dy);
         erro_h = atan2 (dy, dx)-theta_g;
 
