@@ -73,7 +73,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
     double erro_pos, erro_h;
     geometry_msgs::Twist _msg;
     srand(time(NULL));
-    ROS_INFO("Moving linear.x = %.2f, angular.z %.2f\n", (x_g-current_x), x_g);
+    ROS_INFO("Moving linear.x = %.2f, angular.z %.2f\n", (current_x), x_g);
     while (ros::ok()){
         dx = x_g;//–double(current_x);
         dy = y_g;//-double(current_y);
