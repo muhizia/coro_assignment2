@@ -78,7 +78,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
    // erro_h      = atan2 (dy, dx)-theta_g;
    // currentX    = current_x;
    // currentY    = current_y;
-   double Kpp = 1.2;
+   double Kpp = 0.2;
    double Kph = 0.2;
    ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
    ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
