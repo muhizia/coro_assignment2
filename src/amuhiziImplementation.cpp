@@ -91,8 +91,9 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       dx             = x_g-currentX;
       dy             = y_g-currentY;
       erro_pos       = sqrt(dx*dx + dy*dy);
-      erro_h         = atan2(dy, dx)- abs(theta_g-currentTheta);
+      erro_h         = atan2(dy, dx) - (theta_g-currentTheta);
 
+      ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", theta_g, currentTheta);
       ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
       ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
       ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
