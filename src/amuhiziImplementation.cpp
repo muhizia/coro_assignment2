@@ -66,7 +66,7 @@ void print_message_to_file(FILE *fp, char message[]) {
    fprintf(fp,"The message is: %s\n", message);
 }
 
-void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g){
+void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_start, double theta_g){
    ros::Rate _rate(1);
    int count = 0;
    double dx, dy, currentX, currentY, currentTheta;
@@ -91,7 +91,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       dx             = x_g-currentX;
       dy             = y_g-currentY;
       erro_pos       = sqrt(dx*dx + dy*dy);
-      erro_h         = atan2(dy, dx) - (theta_g-currentTheta);
+      erro_h         = atan2(dy, dx) - theta_start;
 
       ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
       ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
