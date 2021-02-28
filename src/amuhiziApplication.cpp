@@ -192,7 +192,7 @@ main(int argc, char **argv) {
 
       // pub.publish(_msg);
       pen_arguments.request.off = 0;
-      devideAndConquer(pub, goal_x, goal_y, start_theta);
+      devideAndConquer(pub, goal_x, goal_y, goal_theta);
       /* version 1 */
       /*
       req.x = start_x;  // fill in the request data members
