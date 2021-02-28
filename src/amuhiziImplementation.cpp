@@ -83,7 +83,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
    ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
    ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
 
-   while (is_start || abs(erro_pos) > 1e-2){
+   while (is_start || abs(erro_pos) > 1e-3){
       is_start       = false;
       currentX       = current_x;
       currentY       = current_y;
@@ -99,7 +99,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       // ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
       
 
-      if (abs(erro_h)>1e-2){
+      if (abs(erro_h)>1e-3){
          // set forward velocity: v = 0
          // set angular velocity: w = Kph eh
          _msg.linear.x = 0;
