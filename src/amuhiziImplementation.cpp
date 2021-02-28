@@ -124,13 +124,11 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       }
       //   ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", _msg.linear.x, _msg.angular.x);
       
-
-      _msg.linear.x = 0;
       pub.publish(_msg);
       ros::spinOnce();
       _rate.sleep();
       count++;
    }
-
+   _msg.linear.x = 0;
    pub.publish(_msg);
 }
