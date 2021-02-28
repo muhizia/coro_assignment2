@@ -78,6 +78,8 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
    // erro_h      = atan2 (dy, dx)-theta_g;
    // currentX    = current_x;
    // currentY    = current_y;
+   double Kpp = 16;
+   double Kph = 4;
    ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
    ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
 
@@ -102,9 +104,9 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
 
          _msg.angular.x = 0;
          _msg.angular.y = 0;
-         _msg.angular.z = 2*3.14159*double(rand())/double(RAND_MAX)-1;
+         _msg.angular.z = Kph*erro_h;
       }else{
-         _msg.linear.x = double(rand())/double(RAND_MAX);;
+         _msg.linear.x = Kpp*erro_pos;
          _msg.linear.y = 0;
          _msg.linear.z = 0;
 
