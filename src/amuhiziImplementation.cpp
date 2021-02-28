@@ -78,7 +78,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
        currentY = double(current_y);
        ROS_INFO("Moving linear.x = %.2f, angular.z %.2f\n", currentX, currentY);
         dx = x_g-currentX;
-        dy = y_gcurrentY;
+        dy = y_g-currentY;
         erro_pos = sqrt(dx*dx + dy*dy);
         erro_h = atan2 (dy, dx)-theta_g;
 
