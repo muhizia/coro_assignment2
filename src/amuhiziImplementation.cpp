@@ -78,7 +78,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
    // erro_h      = atan2 (dy, dx)-theta_g;
    // currentX    = current_x;
    // currentY    = current_y;
-   double Kpp = 0.2;
+   double Kpp = 6;
    double Kph = 0.2;
    ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
    ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
@@ -93,10 +93,10 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       erro_pos       = sqrt(dx*dx + dy*dy);
       erro_h         = atan2(dy, dx) - currentTheta;
 
-      ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
-      ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
-      ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
-      ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
+      // ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
+      // ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
+      // ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
+      // ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
       
 
       if (abs(erro_h)>1e-2){
@@ -113,7 +113,6 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
          ROS_INFO("angular z = %.2f\n", Kph*erro_h);
          ROS_INFO("================Turning===================");
       }else{
-         ROS_INFO("================Moving===================");
          _msg.linear.x = Kpp*erro_pos;
          _msg.linear.y = 0;
          _msg.linear.z = 0;
@@ -121,6 +120,8 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
          _msg.angular.x = 0;
          _msg.angular.y = 0;
          _msg.angular.z = 0;
+         ROS_INFO("angular z = %.2f\n", Kpp*erro_pos);
+         ROS_INFO("================Moving===================");
       }
       //   ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", _msg.linear.x, _msg.angular.x);
       
