@@ -96,13 +96,14 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       ROS_INFO("======================================================");
       ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
       ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
-      ROS_INFO("current x = %.2f, current y %.2f\n", dx, dy);
+      ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
       ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
-      ROS_INFO("======================================================");
+      
 
       if (abs(erro_h)>1e-2){
          // set forward velocity: v = 0
          // set angular velocity: w = Kph eh
+         ROS_INFO("================Turning===================");
          _msg.linear.x = 0;
          _msg.linear.y = 0;
          _msg.linear.z = 0;
@@ -111,6 +112,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
          _msg.angular.y = 0;
          _msg.angular.z = Kph*erro_h;
       }else{
+         ROS_INFO("================Moving===================");
          _msg.linear.x = Kpp*erro_pos;
          _msg.linear.y = 0;
          _msg.linear.z = 0;
