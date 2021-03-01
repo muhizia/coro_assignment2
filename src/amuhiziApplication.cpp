@@ -191,9 +191,6 @@ main(int argc, char **argv) {
       _msg.angular.z = start_theta;
       pub.publish(_msg);
       
-
-      pen_arguments.request.off = 0;
-      devideAndConquer(pub, goal_x, goal_y, goal_theta);
       /* version 1 */
       /*
       req.x = start_x;  // fill in the request data members
@@ -232,18 +229,19 @@ main(int argc, char **argv) {
       if (!success) {
       	 ROS_ERROR_STREAM("TurtlePen failed to switch off");
       }
-
+      pen_arguments.request.off = 0;
+      
       /* now execute the command to drive the turtlebot to the goal pose */
       
       if (strcmp(command, "goto1")==0) {
 
- 	 /* divide and conquer algorithm */
-	
-	
+         /* divide and conquer algorithm */
+         devideAndConquer(pub, goal_x, goal_y, goal_theta);
+
       }
       else {
 
-	/* MIMO algorithm */
+	      /* MIMO algorithm */
 
       }
       
