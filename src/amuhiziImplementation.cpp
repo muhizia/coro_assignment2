@@ -11,7 +11,9 @@
 *
 *   Audit Trail
 *   -----------
-*
+*     - Added MeMo() to allow the turtle moving and turning at the sametime.
+*     - Added devideAndConquer() this funtion allow the turtle to turn first and move after
+*     - Added getDirection() to get the angle of the turtle Omega.
 *******************************************************************************************************************/
 
 #include <assignment2/amuhizi.h> 
@@ -90,8 +92,8 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       is_start       = false;
       currentX       = current_x;
       currentY       = current_y;
-      // currentTheta   = current_theta;
-      getDirection(&currentTheta);
+      currentTheta   = current_theta;
+      // getDirection(&currentTheta);
       dx             = x_g-currentX;
       dy             = y_g-currentY;
       erro_pos       = sqrt(dx*dx + dy*dy);
@@ -164,8 +166,8 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
       is_start       = false;
       currentX       = current_x;
       currentY       = current_y;
-      // currentTheta   = current_theta;
-      getDirection(&currentTheta);
+      currentTheta   = current_theta;
+      // getDirection(&currentTheta);
       dx             = x_g-currentX;
       dy             = y_g-currentY;
       erro_pos       = sqrt(dx*dx + dy*dy);
@@ -198,11 +200,18 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    pub.publish(_msg);
 }
 
-void getDirection(double *direction){
-   if (current_theta < 0) *direction = (2*M_PI) - std::fmod(abs(current_theta),(2*M_PI));
-   else *direction = std::fmod(current_theta,(2*M_PI));
-   if (abs(*direction) > (3*M_PI/2)) 
-   {
-      *direction = - ((2*M_PI) - abs(*direction));
-   }
-}
+// void getDirection(double *direction){
+//    if (current_theta < 0) *direction = (2*M_PI) - std::fmod(abs(current_theta),(2*M_PI));
+//    else *direction = std::fmod(current_theta,(2*M_PI));
+//    // if (abs(*direction) > (3*M_PI/2)) 
+//    // {
+//    //    *direction = - ((2*M_PI) - abs(*direction));
+//    // }
+
+//    if(current_theta < 0){
+
+//    }else{
+
+//    }
+
+// }

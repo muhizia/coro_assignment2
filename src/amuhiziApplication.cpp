@@ -20,7 +20,7 @@
 *  The turtle is driven by publishing velocity commands on the turtle1/cmd_vel topic.
 *
 *   Sample Input
-*   goto1 2.0 1.0 3.14 8.0 8.0 0.0
+*   goto1 8.0 8.0 3.14 2.0 1.0 0.0
 *   goto2 2.0 1.0 3.14 8.0 9.0 0.0
 *
 *
@@ -29,7 +29,11 @@
 *
 *   Audit Trail
 *   -----------
-* 
+* Test Strategy
+*   -------------
+*  This program has been tested with various input, to make sure the output is what what expected according to the given input
+*  - when angle given was negative.
+*  - when angle given was positive.
 *
 *******************************************************************************************************************/
 
