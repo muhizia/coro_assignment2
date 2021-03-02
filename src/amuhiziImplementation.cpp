@@ -148,7 +148,7 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
    ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
 
-   while (is_start || abs(erro_pos) > 0.000872665){
+   while (is_start || abs(erro_pos) > 1e-2){
       is_start       = false;
       currentX       = current_x;
       currentY       = current_y;
@@ -170,7 +170,7 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
 
       _msg.angular.x = 0;
       _msg.angular.y = 0;
-      _msg.angular.z = Kph*erro_h;
+      if (abs(erro_h)>0.000872665) _msg.angular.z = Kph*erro_h;
       _msg.linear.x  = Kpp*erro_pos;
       _msg.linear.y  = 0;
       _msg.linear.z  = 0;
