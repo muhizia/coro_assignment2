@@ -196,6 +196,6 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g, bool dire
 void getDirection(double x1, double y1, double x2, double y2, double pos, bool *direction){
    double theta = atan(y2-y1)/(x2-x1);
    double current_pos = abs(theta - pos);
-   if(current_pos > (M_PI/2)) *direction = false;
-   else *direction = true;
+   if(current_pos > (M_PI/2)) *direction = true;
+   else *direction = false;
 }
