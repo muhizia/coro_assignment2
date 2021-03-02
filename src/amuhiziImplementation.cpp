@@ -191,6 +191,6 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
 }
 
 void getDirection(double *direction){
-   if (current_theta < 0) *direction = (2*M_PI) - std::fmod(abs(current_theta),(2*M_PI));
-   else *direction = std::fmod(current_theta,(2*M_PI));
+   if (current_theta < 0) *direction = (M_PI) - std::fmod(abs(current_theta),(M_PI));
+   else *direction = std::fmod(current_theta,(M_PI));
 }
