@@ -202,6 +202,6 @@ void getDirection(double x1, double y1, double x2, double y2, double pos, bool *
    else *direction = false;
 }
 void getDirection(double *direction){
-   if (current_theta < 0) *direction = (2*M_PI) - (abs(current_theta)%(2*M_PI));
-   else *direction = current_theta%(2*M_PI);
+   if (current_theta < 0) *direction = (2*M_PI) - std::fmod(abs(current_theta),(2*M_PI));
+   else *direction = std::fmod(current_theta,(2*M_PI));
 }
