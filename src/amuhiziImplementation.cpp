@@ -79,21 +79,16 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
    geometry_msgs::Twist _msg;
    srand(time(NULL));
    bool is_start = true;
-   // erro_pos    = sqrt(dx*dx + dy*dy);
-   // erro_h      = atan2 (dy, dx)-theta_g;
-   // currentX    = current_x;
-   // currentY    = current_y;
    double Kpp = 0.5;
    double Kph = 0.2;
    ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
    ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
 
-   while (is_start || abs(erro_pos) > 1e-2){//0.000872665){
+   while (is_start || abs(erro_pos) > 1e-2){
       is_start       = false;
       currentX       = current_x;
       currentY       = current_y;
       currentTheta   = current_theta;
-      // getDirection(&currentTheta);
       dx             = x_g-currentX;
       dy             = y_g-currentY;
       erro_pos       = sqrt(dx*dx + dy*dy);
@@ -114,8 +109,8 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
          _msg.angular.x = 0;
          _msg.angular.y = 0;
          _msg.angular.z = Kph*erro_h;
-         ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
-         ROS_INFO("============== Turning =========");
+         // ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
+         // ROS_INFO("============== Turning =========");
       }else{
          // seting values for the linear velocity
          _msg.linear.x = Kpp*erro_pos;
@@ -125,8 +120,8 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
          _msg.angular.x = 0;
          _msg.angular.y = 0;
          _msg.angular.z = 0;
-         ROS_INFO("Linear z = %.2f error position = %.2f\n", Kpp*erro_pos, erro_pos);
-         ROS_INFO("============= Moving ==========");
+         // ROS_INFO("Linear z = %.2f error position = %.2f\n", Kpp*erro_pos, erro_pos);
+         // ROS_INFO("============= Moving ==========");
       }
       //   ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", _msg.linear.x, _msg.angular.x);
       // Publishing the angular velocity and linear velocity
@@ -135,7 +130,10 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       _rate.sleep();
    }
    ROS_INFO("Finished.....\n");
+
+   //Publishing the value to stop the turtle.
    _msg.linear.x = 0;
+   _msg.angular.z = 0;
    pub.publish(_msg);
 }
 
@@ -186,7 +184,7 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    
       // ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
       // ROS_INFO("Linear x = %.2f error position = %.2f\n", Kpp*erro_pos, erro_pos);
-      ROS_INFO("============= Moving ==========");
+      // ROS_INFO("============= Moving ==========");
 
       //publishing the velocity
       pub.publish(_msg);
