@@ -51,3 +51,4 @@ void rotateTutle();
 void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g, bool direction);
 void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g, bool direction);
 void getDirection(double x1, double y1, double x2, double y2, double pos, bool *direction);
+void getDirection(double *direction);

@@ -108,7 +108,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
 
          _msg.angular.x = 0;
          _msg.angular.y = 0;
-         _msg.angular.z = -Kph*erro_h;
+         _msg.angular.z = Kph*erro_h;
          // else _msg.angular.z = -Kph*erro_h;
          ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
          ROS_INFO("============== Turning =========");
@@ -156,7 +156,8 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g, bool dire
       is_start       = false;
       currentX       = current_x;
       currentY       = current_y;
-      currentTheta   = current_theta;
+      //currentTheta   = current_theta;
+      getDirection(&currentTheta);
       dx             = x_g-currentX;
       dy             = y_g-currentY;
       erro_pos       = sqrt(dx*dx + dy*dy);
@@ -201,6 +202,6 @@ void getDirection(double x1, double y1, double x2, double y2, double pos, bool *
    else *direction = false;
 }
 void getDirection(double *direction){
-   if (current_theta < 0) *direction = (2*M_PI) - current_theta;
-   else *direction = current_theta;
+   if (current_theta < 0) *direction = (2*M_PI) - (abs(current_theta)%(2*M_PI));
+   else *direction = current_theta%(2*M_PI);
 }
