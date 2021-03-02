@@ -236,13 +236,13 @@ main(int argc, char **argv) {
       if (strcmp(command, "goto1")==0) {
 
          /* divide and conquer algorithm */
-         MeMo(pub, goal_x, goal_y, goal_theta);
+         devideAndConquer(pub, goal_x, goal_y, goal_theta);
 
       }
       else {
 
 	      /* MIMO algorithm */
-
+         MeMo(pub, goal_x, goal_y, goal_theta);
       }
       
       /* prompt user to continue */

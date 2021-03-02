@@ -170,7 +170,6 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
 
       _msg.angular.x = 0;
       _msg.angular.y = 0;
-      // if (abs(erro_h)>0.000872665)
       _msg.angular.z = Kph*erro_h;
       _msg.linear.x  = Kpp*erro_pos;
       _msg.linear.y  = 0;
