@@ -203,6 +203,6 @@ void getDirection(double *direction){
    else *direction = std::fmod(current_theta,(2*M_PI));
    if (abs(*direction) > 270) 
    {
-      *direction = - (2*M_PI) - abs(*direction);
+      *direction = - ((2*M_PI) - abs(*direction));
    }
 }
