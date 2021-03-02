@@ -47,7 +47,11 @@ void display_error_and_exit(char error_message[]);
 void prompt_and_exit(int status);
 void prompt_and_continue();
 void print_message_to_file(FILE *fp, char message[]);
-void rotateTutle();
+
+/** 
+ * added functions
+ * 
+*/
 void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g);
 void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g);
 void getDirection(double *direction);
