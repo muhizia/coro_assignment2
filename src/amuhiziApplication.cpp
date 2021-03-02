@@ -238,7 +238,7 @@ main(int argc, char **argv) {
          /* divide and conquer algorithm */
          bool direction;
          getDirection(start_x, start_y, goal_x, goal_y, goal_theta, &direction);
-         devideAndConquer(pub, goal_x, goal_y, goal_theta, direction);
+         devideAndConquer(pub, goal_x, goal_y, goal_theta, direction &direction);
 
       }
       else {

@@ -108,7 +108,8 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
 
          _msg.angular.x = 0;
          _msg.angular.y = 0;
-         _msg.angular.z = Kph*erro_h;
+         if(direction) _msg.angular.z = Kph*erro_h;
+         else _msg.angular.z = -Kph*erro_h;
          ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
          ROS_INFO("============== Turning =========");
       }else{
