@@ -87,13 +87,13 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       is_start       = false;
       currentX       = current_x;
       currentY       = current_y;
-      getTheta(&currentTheta);
+      currentTheta   = current_theta;
       dx             = x_g-currentX;
       dy             = y_g-currentY;
       erro_pos       = sqrt(dx*dx + dy*dy);
       erro_h         = atan2(dy, dx) - currentTheta;
 
-      ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
+      // ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
       // ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
       // ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
       // ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
