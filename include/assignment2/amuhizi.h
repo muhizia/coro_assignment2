@@ -49,3 +49,4 @@ void prompt_and_continue();
 void print_message_to_file(FILE *fp, char message[]);
 void rotateTutle();
 void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g);
+void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g);

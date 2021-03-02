@@ -236,7 +236,7 @@ main(int argc, char **argv) {
       if (strcmp(command, "goto1")==0) {
 
          /* divide and conquer algorithm */
-         devideAndConquer(pub, goal_x, goal_y, goal_theta);
+         MeMo(pub, goal_x, goal_y, goal_theta);
 
       }
       else {
