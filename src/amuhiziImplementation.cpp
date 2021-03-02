@@ -133,7 +133,6 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
 
    //Publishing the value to stop the turtle.
    _msg.linear.x = 0;
-   _msg.angular.z = 0;
    pub.publish(_msg);
 }
 
@@ -194,6 +193,5 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    // ROS_INFO("End.....\n");
    //ending the program buy setting the velocity to zero
    _msg.linear.x = 0;
-   _msg.angular.z = 0;
    pub.publish(_msg);
 }
