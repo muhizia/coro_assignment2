@@ -236,9 +236,7 @@ main(int argc, char **argv) {
       if (strcmp(command, "goto1")==0) {
 
          /* divide and conquer algorithm */
-         bool direction;
-         getDirection(start_x, start_y, goal_x, goal_y, goal_theta, &direction);
-         MeMo(pub, goal_x, goal_y, goal_theta, direction);
+         MeMo(pub, goal_x, goal_y, goal_theta);
 
       }
       else {
