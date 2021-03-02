@@ -152,8 +152,8 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
       is_start       = false;
       currentX       = current_x;
       currentY       = current_y;
-      //currentTheta   = current_theta;
-      getDirection(&currentTheta);
+      currentTheta   = current_theta;
+      // getDirection(&currentTheta);
       dx             = x_g-currentX;
       dy             = y_g-currentY;
       erro_pos       = sqrt(dx*dx + dy*dy);
