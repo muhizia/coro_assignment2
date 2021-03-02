@@ -88,7 +88,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
    ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
    ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
 
-   while (is_start || abs(erro_pos) > 0.000872665){
+   while (is_start || abs(erro_pos) > 1e-2){//0.000872665){
       is_start       = false;
       currentX       = current_x;
       currentY       = current_y;
@@ -199,19 +199,3 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    _msg.angular.z = 0;
    pub.publish(_msg);
 }
-
-// void getDirection(double *direction){
-//    if (current_theta < 0) *direction = (2*M_PI) - std::fmod(abs(current_theta),(2*M_PI));
-//    else *direction = std::fmod(current_theta,(2*M_PI));
-//    // if (abs(*direction) > (3*M_PI/2)) 
-//    // {
-//    //    *direction = - ((2*M_PI) - abs(*direction));
-//    // }
-
-//    if(current_theta < 0){
-
-//    }else{
-
-//    }
-
-// }
