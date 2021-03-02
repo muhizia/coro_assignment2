@@ -201,7 +201,7 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
 void getDirection(double *direction){
    if (current_theta < 0) *direction = (2*M_PI) - std::fmod(abs(current_theta),(2*M_PI));
    else *direction = std::fmod(current_theta,(2*M_PI));
-   if (abs(*direction) > 270) 
+   if (abs(*direction) > (3*M_PI/2)) 
    {
       *direction = - ((2*M_PI) - abs(*direction));
    }
