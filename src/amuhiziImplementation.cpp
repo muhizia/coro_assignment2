@@ -65,10 +65,13 @@ void prompt_and_continue() {
 void print_message_to_file(FILE *fp, char message[]) {
    fprintf(fp,"The message is: %s\n", message);
 }
-
+/** 
+ * devide and conquer algorithm
+ * Turning the turtle before moving
+ * 
+*/
 void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    ros::Rate _rate(1);
-   int count = 0;
    double dx, dy, currentX, currentY, currentTheta;
    double erro_pos, erro_h;
    geometry_msgs::Twist _msg;
@@ -128,7 +131,6 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       pub.publish(_msg);
       ros::spinOnce();
       _rate.sleep();
-      count++;
    }
    ROS_INFO("Finished.....\n");
    _msg.linear.x = 0;
@@ -137,7 +139,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
 
 void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    ros::Rate _rate(1);
-   int count = 0;
+   // variable that will be used
    double dx, dy, currentX, currentY, currentTheta;
    double erro_pos, erro_h;
    geometry_msgs::Twist _msg;
@@ -145,9 +147,19 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    bool is_start = true;
    double Kpp = 0.1;
    double Kph = 0.3;
-   ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
-   ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
+   // ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
+   // ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
 
+   /** 
+    * 
+    * setting angular velocity x and Y to zero
+    * linear y, z to zero
+    * 
+   */
+   _msg.angular.x = 0;
+   _msg.angular.y = 0;
+   _msg.linear.y  = 0;
+   _msg.linear.z  = 0;
    while (is_start || abs(erro_pos) > 1e-2){
       is_start       = false;
       currentX       = current_x;
@@ -159,38 +171,38 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
       erro_pos       = sqrt(dx*dx + dy*dy);
       erro_h         = atan2(dy, dx) - currentTheta;
 
-      ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
-      ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
-      ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
-      ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
+      // ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
+      // ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
+      // ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
+      // ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
       
-
-    
-         
-
-      _msg.angular.x = 0;
-      _msg.angular.y = 0;
+      
       _msg.angular.z = Kph*erro_h;
       _msg.linear.x  = Kpp*erro_pos;
-      _msg.linear.y  = 0;
-      _msg.linear.z  = 0;
+      
 
    
       // ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
       // ROS_INFO("Linear x = %.2f error position = %.2f\n", Kpp*erro_pos, erro_pos);
       ROS_INFO("============= Moving ==========");
-   
+
+      //publishing the velocity
       pub.publish(_msg);
       ros::spinOnce();
       _rate.sleep();
-      count++;
    }
-   ROS_INFO("Finished.....\n");
+   // ROS_INFO("End.....\n");
+   //ending the program buy setting the velocity to zero
    _msg.linear.x = 0;
+   _msg.angular.z = 0;
    pub.publish(_msg);
 }
 
 void getDirection(double *direction){
-   if (current_theta < 0) *direction = (M_PI) - std::fmod(abs(current_theta),(M_PI));
-   else *direction = std::fmod(current_theta,(M_PI));
+   if (current_theta < 0) *direction = (2*M_PI) - std::fmod(abs(current_theta),(2*M_PI));
+   else *direction = std::fmod(current_theta,(2*M_PI));
+   if (abs(*direction) > 270) 
+   {
+      *direction = - (2*M_PI) - abs(*direction);
+   }
 }
