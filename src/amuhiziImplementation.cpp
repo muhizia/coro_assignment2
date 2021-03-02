@@ -87,13 +87,13 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       is_start       = false;
       currentX       = current_x;
       currentY       = current_y;
-      currentTheta   = current_theta;
+      getTheta(&currentTheta);
       dx             = x_g-currentX;
       dy             = y_g-currentY;
       erro_pos       = sqrt(dx*dx + dy*dy);
       erro_h         = atan2(dy, dx) - currentTheta;
 
-      // ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
+      ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
       // ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
       // ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
       // ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
@@ -199,4 +199,8 @@ void getDirection(double x1, double y1, double x2, double y2, double pos, bool *
    double current_pos = abs(theta - pos);
    if(current_pos > (M_PI/2)) *direction = true;
    else *direction = false;
+}
+void getDirection(double *direction){
+   if (current_theta < 0) *direction = (2*M_PI) - current_theta;
+   else *direction = current_theta;
 }
