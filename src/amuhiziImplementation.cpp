@@ -66,7 +66,7 @@ void print_message_to_file(FILE *fp, char message[]) {
    fprintf(fp,"The message is: %s\n", message);
 }
 
-void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g, bool direction){
+void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    ros::Rate _rate(1);
    int count = 0;
    double dx, dy, currentX, currentY, currentTheta;
@@ -94,7 +94,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       erro_pos       = sqrt(dx*dx + dy*dy);
       erro_h         = atan2(dy, dx) - currentTheta;
 
-      ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
+      // ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
       // ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
       // ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
       // ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
@@ -110,7 +110,6 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
          _msg.angular.x = 0;
          _msg.angular.y = 0;
          _msg.angular.z = Kph*erro_h;
-         // else _msg.angular.z = -Kph*erro_h;
          ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
          ROS_INFO("============== Turning =========");
       }else{
@@ -136,7 +135,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
    pub.publish(_msg);
 }
 
-void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g, bool direction){
+void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    ros::Rate _rate(1);
    int count = 0;
    double dx, dy, currentX, currentY, currentTheta;
@@ -175,8 +174,7 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g, bool dire
 
       _msg.angular.x = 0;
       _msg.angular.y = 0;
-      if(direction) _msg.angular.z = Kph*erro_h;
-      else _msg.angular.z = -Kph*erro_h;
+      _msg.angular.z = Kph*erro_h;
       _msg.linear.x = Kpp*erro_pos;
       _msg.linear.y = 0;
       _msg.linear.z = 0;
@@ -196,12 +194,6 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g, bool dire
    pub.publish(_msg);
 }
 
-void getDirection(double x1, double y1, double x2, double y2, double pos, bool *direction){
-   double theta = atan(y2-y1)/(x2-x1);
-   double current_pos = abs(theta - pos);
-   if(current_pos > (M_PI/2)) *direction = true;
-   else *direction = false;
-}
 void getDirection(double *direction){
    if (current_theta < 0) *direction = (2*M_PI) - std::fmod(abs(current_theta),(2*M_PI));
    else *direction = std::fmod(current_theta,(2*M_PI));
