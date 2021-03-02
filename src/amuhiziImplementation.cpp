@@ -171,9 +171,9 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
       _msg.angular.x = 0;
       _msg.angular.y = 0;
       _msg.angular.z = Kph*erro_h;
-      _msg.linear.x = Kpp*erro_pos;
-      _msg.linear.y = 0;
-      _msg.linear.z = 0;
+      _msg.linear.x  = Kpp*erro_pos;
+      _msg.linear.y  = 0;
+      _msg.linear.z  = 0;
 
    
       ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
@@ -192,5 +192,6 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
 
 void getDirection(double *direction){
    if (current_theta < 0) *direction = (2*M_PI) - std::fmod(abs(current_theta),(2*M_PI));
-   else *direction = std::fmod(current_theta,(2*M_PI));
+   // else *direction = std::fmod(current_theta,(2*M_PI));
+   else *direction current_theta;
 }
