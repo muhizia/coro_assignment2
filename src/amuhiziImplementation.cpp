@@ -134,7 +134,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
    pub.publish(_msg);
 }
 
-void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
+void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g, bool direction){
    ros::Rate _rate(1);
    int count = 0;
    double dx, dy, currentX, currentY, currentTheta;
@@ -172,8 +172,8 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
 
       _msg.angular.x = 0;
       _msg.angular.y = 0;
-      _msg.angular.z = Kph*erro_h;
-      
+      if(direction) _msg.angular.z = Kph*erro_h;
+      else _msg.angular.z = -Kph*erro_h;
       _msg.linear.x = Kpp*erro_pos;
       _msg.linear.y = 0;
       _msg.linear.z = 0;
@@ -191,4 +191,11 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    ROS_INFO("Finished.....\n");
    _msg.linear.x = 0;
    pub.publish(_msg);
+}
+
+void getDirection(double x1, double y1, double x2, double y2, double pos, bool *direction){
+   double theta = atan(y2-y1)/(x2-x1);
+   double current_pos = abs(theta - pos);
+   if(current_pos > PI/2) *direction = false;
+   else *direction = true;
 }
