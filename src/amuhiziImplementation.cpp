@@ -159,10 +159,10 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
       erro_pos       = sqrt(dx*dx + dy*dy);
       erro_h         = atan2(dy, dx) - currentTheta;
 
-      // ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
-      // ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
-      // ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
-      // ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
+      ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
+      ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
+      ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
+      ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
       
 
     
@@ -176,8 +176,8 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
       _msg.linear.z  = 0;
 
    
-      ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
-      ROS_INFO("Linear z = %.2f error position = %.2f\n", Kpp*erro_pos, erro_pos);
+      // ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
+      // ROS_INFO("Linear x = %.2f error position = %.2f\n", Kpp*erro_pos, erro_pos);
       ROS_INFO("============= Moving ==========");
    
       pub.publish(_msg);
@@ -192,6 +192,5 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
 
 void getDirection(double *direction){
    if (current_theta < 0) *direction = (2*M_PI) - std::fmod(abs(current_theta),(2*M_PI));
-   // else *direction = std::fmod(current_theta,(2*M_PI));
-   else *direction = current_theta;
+   else *direction = std::fmod(current_theta,(2*M_PI));
 }
