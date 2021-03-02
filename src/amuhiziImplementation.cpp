@@ -66,7 +66,7 @@ void print_message_to_file(FILE *fp, char message[]) {
    fprintf(fp,"The message is: %s\n", message);
 }
 
-void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g){
+void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_g, bool direction){
    ros::Rate _rate(1);
    int count = 0;
    double dx, dy, currentX, currentY, currentTheta;
