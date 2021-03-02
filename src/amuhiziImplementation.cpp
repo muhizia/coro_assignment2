@@ -94,15 +94,14 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
       erro_pos       = sqrt(dx*dx + dy*dy);
       erro_h         = atan2(dy, dx) - currentTheta;
 
-      // ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", theta_g, currentTheta);
+      ROS_INFO("Moving theta_g = %.2f, currentTheta %.2f\n", current_theta, currentTheta);
       // ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
       // ROS_INFO("current Dx = %.2f, Dy %.2f\n", dx, dy);
       // ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
       
 
       if (abs(erro_h)>0.000872665){
-         // set forward velocity: v = 0
-         // set angular velocity: w = Kph eh
+         // setting the angular velocity
          _msg.linear.x = 0;
          _msg.linear.y = 0;
          _msg.linear.z = 0;
@@ -113,6 +112,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
          ROS_INFO("angular z = %.2f error h = %.2f\n", Kph*erro_h, erro_h);
          ROS_INFO("============== Turning =========");
       }else{
+         // seting values for the linear velocity
          _msg.linear.x = Kpp*erro_pos;
          _msg.linear.y = 0;
          _msg.linear.z = 0;
@@ -124,7 +124,7 @@ void devideAndConquer(ros::Publisher  pub, double x_g, double y_g, double theta_
          ROS_INFO("============= Moving ==========");
       }
       //   ROS_INFO("Moving Linear.x = %.2f, angular.z %.2f\n", _msg.linear.x, _msg.angular.x);
-      
+      // Publishing the angular velocity and linear velocity
       pub.publish(_msg);
       ros::spinOnce();
       _rate.sleep();
