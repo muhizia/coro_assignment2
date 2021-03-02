@@ -143,12 +143,8 @@ void MeMo(ros::Publisher  pub, double x_g, double y_g, double theta_g){
    geometry_msgs::Twist _msg;
    srand(time(NULL));
    bool is_start = true;
-   // erro_pos    = sqrt(dx*dx + dy*dy);
-   // erro_h      = atan2 (dy, dx)-theta_g;
-   // currentX    = current_x;
-   // currentY    = current_y;
    double Kpp = 0.2;
-   double Kph = 2;
+   double Kph = 5;
    ROS_INFO("Moving error pos = %.2f, erro header %.2f\n", erro_pos, erro_h);
    ROS_INFO("current x = %.2f, current y %.2f\n", currentX, currentY);
 
